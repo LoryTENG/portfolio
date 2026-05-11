@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+html {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+/* ── Typography ──────────────────────────────────────────────── */
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-heading {
+  font-family: 'Archivo', system-ui, sans-serif;
+}
+
+/* ── Collapsible Sections ────────────────────────────────────── */
+.collapsible-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease;
+}
+.collapsible-wrap.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.collapsible-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ── Scroll Reveal Keyframes ─────────────────────────────────── */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes countUpAnim {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Reveal Utility Classes ──────────────────────────────────── */
+.reveal-hidden  { opacity: 0; transform: translateY(50px); }
+.reveal-visible { animation: slideUpFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.reveal-fade    { animation: fadeIn 0.8s ease forwards; }
+.reveal-count   { animation: countUpAnim 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* ── Section Label ───────────────────────────────────────────── */
+.section-label {
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #e8e8e8;
+  white-space: nowrap;
+  display: block;
+  user-select: none;
+  font-family: 'Archivo', system-ui, sans-serif;
+}
+
+/* ── Reduced Motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal-hidden  { opacity: 1; transform: none; }
+  .reveal-visible { animation: none; opacity: 1; transform: none; }
+  .reveal-fade    { animation: none; opacity: 1; }
+  .reveal-count   { animation: none; opacity: 1; transform: none; }
+  .collapsible-wrap {
+    transition: grid-template-rows 0.15s ease, opacity 0.1s ease;
+  }
+}
