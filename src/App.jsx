@@ -87,7 +87,7 @@ const App = () => {
   const [statsVisible, setStatsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
   const [expanded, setExpanded] = useState({
-    skills: false, experience: false, projects: false, contact: true,
+    skills: false, experience: false, projects: true, contact: true,
   });
   const toggleSection = (key) => setExpanded(prev => ({ ...prev, [key]: !prev[key] }));
 
