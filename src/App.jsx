@@ -172,7 +172,7 @@ const App = () => {
               { id: 'contact',    to: '#contact',      en: 'Contact', cn: '联系' },
             ].map(({ id, to, en, cn }) => {
               const isActive = activeSection === id;
-              const cls = `px-4 py-2 border transition-all duration-200 flex flex-col items-center leading-tight font-bold ${
+              const cls = `w-[84px] py-2 border transition-all duration-200 flex flex-col items-center justify-center leading-tight font-bold ${
                 isActive
                   ? 'border-gray-900 bg-gray-900 text-white'
                   : 'border-gray-200 text-gray-600 hover:border-gray-900 hover:bg-gray-900 hover:text-white'
@@ -280,12 +280,12 @@ const App = () => {
           ].map((s, i) => (
             <div
               key={i}
-              className={`group border-r last:border-r-0 border-b md:border-b-0 border-gray-200 px-8 py-8 transition-all duration-300 hover:bg-gray-900 cursor-default ${statsVisible ? 'reveal-count' : 'opacity-0'}`}
+              className={`group border-r last:border-r-0 border-b md:border-b-0 border-gray-200 px-8 py-8 transition-all duration-300 hover:border-gray-900 hover:-translate-y-1 hover:shadow-xl cursor-default ${statsVisible ? 'reveal-count' : 'opacity-0'}`}
               style={{ animationDelay: `${i * 80}ms` }}
             >
-              <div className="text-3xl md:text-4xl font-black text-gray-900 group-hover:text-white tracking-tight group-hover:scale-110 transition-all duration-300 origin-left inline-block">{s.val}</div>
-              <div className="text-xs font-bold text-gray-400 group-hover:text-gray-400 uppercase tracking-[0.15em] mt-2">{s.label}</div>
-              <div className="text-xs text-gray-400 group-hover:text-gray-500 mt-0.5">{s.cn}</div>
+              <div className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight group-hover:scale-110 transition-all duration-300 origin-left inline-block">{s.val}</div>
+              <div className="text-xs font-bold text-gray-400 group-hover:text-gray-700 uppercase tracking-[0.15em] mt-2">{s.label}</div>
+              <div className="text-xs text-gray-400 group-hover:text-gray-600 mt-0.5">{s.cn}</div>
             </div>
           ))}
         </section>
@@ -294,7 +294,7 @@ const App = () => {
         <section id="skills" className="mb-1 scroll-mt-16" style={{ scrollSnapAlign: 'start' }}>
           {/* Banner — 替换 backgroundImage url 以设置背景图 */}
           <div
-            className="relative -mx-6 h-40 md:h-48 bg-gray-100 border border-gray-200 cursor-pointer overflow-hidden group"
+            className="relative -mx-6 h-40 md:h-48 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 cursor-pointer overflow-hidden group"
             onClick={() => toggleSection('skills')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
@@ -346,7 +346,7 @@ const App = () => {
         {/* ── Experience ───────────────────────────────────────── */}
         <section id="experience" className="mb-1 scroll-mt-16" style={{ scrollSnapAlign: 'start' }}>
           <div
-            className="relative -mx-6 h-40 md:h-48 bg-gray-100 border border-gray-200 cursor-pointer overflow-hidden group"
+            className="relative -mx-6 h-40 md:h-48 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 cursor-pointer overflow-hidden group"
             onClick={() => toggleSection('experience')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
@@ -397,7 +397,7 @@ const App = () => {
         {/* ── Projects ─────────────────────────────────────────── */}
         <section id="projects" className="mb-1 scroll-mt-16" style={{ scrollSnapAlign: 'start' }}>
           <div
-            className="relative -mx-6 h-40 md:h-48 bg-gray-100 border border-gray-200 cursor-pointer overflow-hidden group"
+            className="relative -mx-6 h-40 md:h-48 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 cursor-pointer overflow-hidden group"
             onClick={() => toggleSection('projects')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
@@ -452,7 +452,7 @@ const App = () => {
         {/* ── Contact ──────────────────────────────────────────── */}
         <section id="contact" className="mb-20 scroll-mt-16" style={{ scrollSnapAlign: 'start' }}>
           <div
-            className="relative -mx-6 h-40 md:h-48 bg-gray-100 border border-gray-200 cursor-pointer overflow-hidden group"
+            className="relative -mx-6 h-40 md:h-48 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 cursor-pointer overflow-hidden group"
             onClick={() => toggleSection('contact')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
