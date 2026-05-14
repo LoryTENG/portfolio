@@ -164,16 +164,19 @@ const App = () => {
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-900">TENG LONGYIN</span>
           <div className="hidden md:flex gap-8 text-xs tracking-widest uppercase">
-            {[['about','Intro','简介'],['skills','Skills','技能'],['experience','Exp','经历'],['projects','Work','项目'],['contact','Contact','联系']].map(([id, en, cn]) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                className={`transition-colors duration-200 flex flex-col items-center leading-tight ${activeSection === id ? 'text-gray-900 border-b border-gray-900 pb-0.5' : 'text-gray-400 hover:text-gray-900'}`}
-              >
-                <span>{en}</span>
-                <span className="text-[9px] tracking-[0.15em] opacity-60 normal-case font-normal mt-px">{cn}</span>
-              </a>
-            ))}
+            {[
+              { id: 'about',      to: '#about',       en: 'Intro',   cn: '简介' },
+              { id: 'skills',     to: '/skills',       en: 'Skills',  cn: '技能' },
+              { id: 'experience', to: '/experience',   en: 'Exp',     cn: '经历' },
+              { id: 'projects',   to: '/projects',     en: 'Work',    cn: '项目' },
+              { id: 'contact',    to: '#contact',      en: 'Contact', cn: '联系' },
+            ].map(({ id, to, en, cn }) => {
+              const cls = `transition-colors duration-200 flex flex-col items-center leading-tight ${activeSection === id ? 'text-gray-900 border-b border-gray-900 pb-0.5' : 'text-gray-400 hover:text-gray-900'}`;
+              const label = (<><span>{en}</span><span className="text-[9px] tracking-[0.15em] opacity-60 normal-case font-normal mt-px">{cn}</span></>);
+              return to.startsWith('#')
+                ? <a key={id} href={to} className={cls}>{label}</a>
+                : <Link key={id} to={to} className={cls}>{label}</Link>;
+            })}
           </div>
           <span className="text-xs text-gray-300 font-mono tracking-widest hidden sm:inline">{time}</span>
         </div>
@@ -285,14 +288,8 @@ const App = () => {
             onClick={() => toggleSection('skills')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
-            style={{
-              backgroundImage: "url('/images/banner_skills.jpg')",
-              willChange: 'transform',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center center',
-            }}
+            style={{ willChange: 'transform' }}
           >
-            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300" />
             <div className="relative z-10 h-full flex items-center justify-between px-6 md:px-12">
               <div>
                 <span className="section-label" style={{ color: 'rgba(255,255,255,0.07)' }}>SKILLS</span>
@@ -343,14 +340,8 @@ const App = () => {
             onClick={() => toggleSection('experience')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
-            style={{
-              backgroundImage: "url('/images/banner_experience.jpg')",
-              willChange: 'transform',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center center',
-            }}
+            style={{ willChange: 'transform' }}
           >
-            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300" />
             <div className="relative z-10 h-full flex items-center justify-between px-6 md:px-12">
               <div>
                 <span className="section-label" style={{ color: 'rgba(255,255,255,0.07)' }}>EXPERIENCE</span>
@@ -400,14 +391,8 @@ const App = () => {
             onClick={() => toggleSection('projects')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
-            style={{
-              backgroundImage: "url('/images/banner_projects.jpg')",
-              willChange: 'transform',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center center',
-            }}
+            style={{ willChange: 'transform' }}
           >
-            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300" />
             <div className="relative z-10 h-full flex items-center justify-between px-6 md:px-12">
               <div>
                 <span className="section-label" style={{ color: 'rgba(255,255,255,0.07)' }}>PROJECTS</span>
@@ -461,14 +446,8 @@ const App = () => {
             onClick={() => toggleSection('contact')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
-            style={{
-              backgroundImage: "url('/images/banner_contact.jpg')",
-              willChange: 'transform',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center center',
-            }}
+            style={{ willChange: 'transform' }}
           >
-            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300" />
             <div className="relative z-10 h-full flex items-center justify-between px-6 md:px-12">
               <div>
                 <span className="section-label" style={{ color: 'rgba(255,255,255,0.07)' }}>CONTACT</span>
