@@ -182,9 +182,9 @@ const App = () => {
               }`;
               const label = (
                 <>
-                  <span className="text-[11px]">{en}</span>
-                  <span className="text-[9px] opacity-30 font-normal">·</span>
-                  <span className="text-[9px] opacity-60 normal-case font-normal tracking-[0.08em]">{cn}</span>
+                  <span className="text-[13px]">{en}</span>
+                  <span className="text-[11px] opacity-30 font-normal">·</span>
+                  <span className="text-[11px] opacity-60 normal-case font-normal tracking-[0.08em]">{cn}</span>
                 </>
               );
               return to.startsWith('#')
