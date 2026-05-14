@@ -175,7 +175,7 @@ const App = () => {
               { id: 'contact',    to: '#contact',      en: 'Contact',    cn: '联系' },
             ].map(({ id, to, en, cn }) => {
               const isActive = activeSection === id;
-              const cls = `w-[126px] py-2 transition-all duration-200 flex items-center justify-center gap-1.5 font-bold ${
+              const cls = `px-4 py-2 whitespace-nowrap transition-all duration-200 flex items-center justify-center gap-1.5 font-bold ${
                 isActive
                   ? 'text-gray-900 border-b-2 border-gray-900'
                   : 'text-gray-400 hover:text-gray-900'
@@ -314,7 +314,7 @@ const App = () => {
             <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 pb-8">
               <p className="text-[10px] text-white/50 tracking-[0.35em] uppercase mb-3">01 — Technical Skills / 专业技能</p>
               <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.03em] leading-none uppercase">
-                TECH<br />SKILLS
+                TECH SKILLS
               </h2>
             </div>
           </div>
@@ -364,7 +364,7 @@ const App = () => {
             <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 pb-8">
               <p className="text-[10px] text-white/50 tracking-[0.35em] uppercase mb-3">02 — Professional Experience / 科研经历</p>
               <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.03em] leading-none uppercase">
-                EXPERI<br />ENCE
+                EXPERIENCE
               </h2>
             </div>
           </div>
@@ -413,7 +413,7 @@ const App = () => {
             <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 pb-8">
               <p className="text-[10px] text-white/50 tracking-[0.35em] uppercase mb-3">03 — Featured Projects / 精选项目</p>
               <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.03em] leading-none uppercase">
-                PROJ<br />ECTS
+                PROJECTS
               </h2>
             </div>
           </div>
@@ -463,7 +463,7 @@ const App = () => {
             <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 pb-8">
               <p className="text-[10px] text-white/50 tracking-[0.35em] uppercase mb-3">04 — Get In Touch / 联系我</p>
               <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.03em] leading-none uppercase">
-                CON<br />TACT
+                CONTACT
               </h2>
             </div>
           </div>
