@@ -1,12 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 
-const GAP       = 34;    // grid spacing (px)
-const R_REST    = 2.3;   // dot radius at rest
-const R_MAX     = 4.8;   // dot radius at max displacement
-const REPEL_R   = 110;   // mouse repulsion radius (px)
-const STRENGTH  = 8;     // repulsion force multiplier
-const SPRING    = 0.08;  // spring constant (pulls dot home)
-const DAMPING   = 0.72;  // velocity damping per frame
+const GAP       = 34;
+const R_REST    = 2.3;
+const R_MAX     = 4.8;
+const REPEL_R   = 110;
+const STRENGTH  = 8;
+const SPRING    = 0.08;
+const DAMPING   = 0.72;
 
 const DotGrid = () => {
   const canvasRef = useRef(null);
@@ -18,12 +18,10 @@ const DotGrid = () => {
     let dots = [];
     let raf;
 
-    // ── Build grid ─────────────────────────────────────────────
     const build = () => {
       dots = [];
       const W = canvas.width;
       const H = canvas.height;
-      // center the grid
       const cols = Math.floor(W / GAP) + 2;
       const rows = Math.floor(H / GAP) + 2;
       const startX = ((W % GAP) + GAP) / 2;
@@ -37,34 +35,24 @@ const DotGrid = () => {
       }
     };
 
-    // ── Resize ─────────────────────────────────────────────────
     const resize = () => {
-      const el = canvas.parentElement;
-      canvas.width  = el.offsetWidth;
-      canvas.height = el.offsetHeight;
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
       build();
     };
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas.parentElement);
+    window.addEventListener('resize', resize);
     resize();
 
-    // ── Mouse — listened on parent so pointer-events:none on canvas works ──
-    const parent = canvas.parentElement;
-    const onMove = (e) => {
-      const r = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - r.left;
-      mouse.y = e.clientY - r.top;
-    };
+    // Canvas is fixed at (0,0), so clientX/Y map directly to canvas coords
+    const onMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
     const onLeave = () => { mouse.x = -9999; mouse.y = -9999; };
-    parent.addEventListener('mousemove', onMove);
-    parent.addEventListener('mouseleave', onLeave);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseleave', onLeave);
 
-    // ── Draw loop ──────────────────────────────────────────────
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (const d of dots) {
-        // Repulsion force from mouse
         const dx = d.x - mouse.x;
         const dy = d.y - mouse.y;
         const dist = Math.hypot(dx, dy);
@@ -74,20 +62,17 @@ const DotGrid = () => {
           d.vy += (dy / dist) * f;
         }
 
-        // Spring back to origin + damping
         d.vx = (d.vx + (d.ox - d.x) * SPRING) * DAMPING;
         d.vy = (d.vy + (d.oy - d.y) * SPRING) * DAMPING;
         d.x += d.vx;
         d.y += d.vy;
 
-        // Displacement ratio 0→1
         const disp = Math.hypot(d.x - d.ox, d.y - d.oy);
         const t = Math.min(disp / (REPEL_R * 0.55), 1);
 
-        // Visual: light gray at rest → dark gray when displaced
         const r     = R_REST + (R_MAX - R_REST) * t;
-        const gray  = Math.round(200 - t * 160);   // 200 (light) → 40 (dark)
-        const alpha = 0.20 + t * 0.72;              // 0.20 → 0.92
+        const gray  = Math.round(200 - t * 160);
+        const alpha = 0.20 + t * 0.72;
 
         ctx.beginPath();
         ctx.arc(d.x, d.y, r, 0, Math.PI * 2);
@@ -101,9 +86,9 @@ const DotGrid = () => {
 
     return () => {
       cancelAnimationFrame(raf);
-      ro.disconnect();
-      parent.removeEventListener('mousemove', onMove);
-      parent.removeEventListener('mouseleave', onLeave);
+      window.removeEventListener('resize', resize);
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseleave', onLeave);
     };
   }, []);
 
@@ -111,21 +96,13 @@ const DotGrid = () => {
     <canvas
       ref={canvasRef}
       style={{
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
         pointerEvents: 'none',
-        zIndex: 3,
-        // Fade edges so dots dissolve into the white background
-        maskImage:
-          'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%), ' +
-          'linear-gradient(to right,  transparent 0%, black 6%,  black 94%, transparent 100%)',
-        WebkitMaskImage:
-          'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%), ' +
-          'linear-gradient(to right,  transparent 0%, black 6%,  black 94%, transparent 100%)',
-        maskComposite: 'intersect',
-        WebkitMaskComposite: 'source-in',
+        zIndex: 1,
       }}
     />
   );

@@ -159,28 +159,32 @@ const App = () => {
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-gray-900 selection:text-white overflow-x-hidden">
 
+      {/* Full-page dot grid — fixed, pointer-events none, z-1 */}
+      <DotGrid />
+
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-[80] transition-all duration-300 ${scrolled ? 'bg-white/95 border-b border-gray-200 backdrop-blur-sm' : 'bg-white'}`}>
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-900">TENG LONGYIN</span>
-          <div className="hidden md:flex gap-2 text-xs tracking-widest uppercase">
+          <div className="hidden md:flex gap-0 text-xs tracking-widest uppercase">
             {[
-              { id: 'about',      to: '#about',       en: 'Intro',   cn: '简介' },
-              { id: 'skills',     to: '/skills',       en: 'Skills',  cn: '技能' },
+              { id: 'about',      to: '#about',       en: 'Intro',      cn: '简介' },
+              { id: 'skills',     to: '/skills',       en: 'Skills',     cn: '技能' },
               { id: 'experience', to: '/experience',   en: 'Experience', cn: '经历' },
-              { id: 'projects',   to: '/projects',     en: 'Projects',cn: '项目' },
-              { id: 'contact',    to: '#contact',      en: 'Contact', cn: '联系' },
+              { id: 'projects',   to: '/projects',     en: 'Projects',   cn: '项目' },
+              { id: 'contact',    to: '#contact',      en: 'Contact',    cn: '联系' },
             ].map(({ id, to, en, cn }) => {
               const isActive = activeSection === id;
-              const cls = `w-[84px] py-2 border transition-all duration-200 flex flex-col items-center justify-center leading-tight font-bold ${
+              const cls = `w-[126px] py-2 transition-all duration-200 flex items-center justify-center gap-1.5 font-bold ${
                 isActive
-                  ? 'border-gray-900 bg-gray-900 text-white'
-                  : 'border-gray-200 text-gray-600 hover:border-gray-900 hover:bg-gray-900 hover:text-white'
+                  ? 'text-gray-900 border-b-2 border-gray-900'
+                  : 'text-gray-400 hover:text-gray-900'
               }`;
               const label = (
                 <>
                   <span className="text-[11px]">{en}</span>
-                  <span className="text-[9px] tracking-[0.1em] opacity-70 normal-case font-normal mt-px">{cn}</span>
+                  <span className="text-[9px] opacity-30 font-normal">·</span>
+                  <span className="text-[9px] opacity-60 normal-case font-normal tracking-[0.08em]">{cn}</span>
                 </>
               );
               return to.startsWith('#')
@@ -192,11 +196,10 @@ const App = () => {
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6">
+      <main className="max-w-6xl mx-auto px-6 relative z-10">
 
         {/* ── Hero ─────────────────────────────────────────────── */}
-        <section id="about" className="relative pt-36 pb-24 grid grid-cols-1 md:grid-cols-12 gap-10 items-start scroll-mt-16 overflow-hidden" style={{ scrollSnapAlign: 'start' }}>
-          <DotGrid />
+        <section id="about" className="relative pt-36 pb-24 grid grid-cols-1 md:grid-cols-12 gap-10 items-start scroll-mt-16" style={{ scrollSnapAlign: 'start' }}>
           <div className="md:col-span-7 relative z-10">
             <p
               className={`text-xs tracking-[0.3em] uppercase text-gray-400 mb-6 transition-all duration-700 ${heroLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
@@ -292,28 +295,27 @@ const App = () => {
 
         {/* ── Skills ───────────────────────────────────────────── */}
         <section id="skills" className="mb-1 scroll-mt-16" style={{ scrollSnapAlign: 'start' }}>
-          {/* Banner — 替换 backgroundImage url 以设置背景图 */}
           <div
-            className="relative -mx-6 h-40 md:h-48 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 cursor-pointer overflow-hidden group"
+            className="relative -mx-6 h-56 md:h-64 cursor-pointer overflow-hidden"
             onClick={() => toggleSection('skills')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
-            style={{ willChange: 'transform' }}
+            style={{ willChange: 'transform', backgroundImage: "url('/images/banner_skills.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
           >
-            <div className="relative z-10 h-full flex items-center justify-between px-6 md:px-12">
-              <div>
-                <span className="section-label" style={{ color: 'rgba(0,0,0,0.07)' }}>SKILLS</span>
-                <div className="flex items-center gap-3 -mt-2">
-                  <h2 className="text-sm font-bold uppercase tracking-[0.25em] text-gray-900">Technical Skills</h2>
-                  <span className="text-xs text-gray-500 tracking-widest hidden sm:inline">专业技能</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Link to="/skills" onClick={e => e.stopPropagation()} className="hidden sm:flex items-center gap-1 text-[10px] text-gray-500 hover:text-gray-900 uppercase tracking-widest transition-colors duration-200">
-                  View <ArrowRight size={10} />
-                </Link>
-                <div className={`w-9 h-9 border border-gray-400 flex items-center justify-center text-gray-700 text-xl leading-none font-thin transition-transform duration-400 ${expanded.skills ? 'rotate-45' : ''}`}>+</div>
-              </div>
+            <div className="absolute inset-0 bg-black/65" />
+            {/* Toggle + View — top right */}
+            <div className="absolute top-5 right-6 z-10 flex items-center gap-3">
+              <Link to="/skills" onClick={e => e.stopPropagation()} className="hidden sm:flex items-center gap-1 text-[10px] text-white/60 hover:text-white uppercase tracking-widest transition-colors duration-200">
+                View <ArrowRight size={10} />
+              </Link>
+              <div className={`w-9 h-9 border border-white/40 flex items-center justify-center text-white text-xl leading-none font-thin transition-transform duration-400 ${expanded.skills ? 'rotate-45' : ''}`}>+</div>
+            </div>
+            {/* Editorial text — bottom left */}
+            <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 pb-8">
+              <p className="text-[10px] text-white/50 tracking-[0.35em] uppercase mb-3">01 — Technical Skills / 专业技能</p>
+              <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.03em] leading-none uppercase">
+                TECH<br />SKILLS
+              </h2>
             </div>
           </div>
           {/* Collapsible content */}
@@ -346,26 +348,24 @@ const App = () => {
         {/* ── Experience ───────────────────────────────────────── */}
         <section id="experience" className="mb-1 scroll-mt-16" style={{ scrollSnapAlign: 'start' }}>
           <div
-            className="relative -mx-6 h-40 md:h-48 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 cursor-pointer overflow-hidden group"
+            className="relative -mx-6 h-56 md:h-64 cursor-pointer overflow-hidden"
             onClick={() => toggleSection('experience')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
-            style={{ willChange: 'transform' }}
+            style={{ willChange: 'transform', backgroundImage: "url('/images/banner_experience.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
           >
-            <div className="relative z-10 h-full flex items-center justify-between px-6 md:px-12">
-              <div>
-                <span className="section-label" style={{ color: 'rgba(0,0,0,0.07)' }}>EXPERIENCE</span>
-                <div className="flex items-center gap-3 -mt-2">
-                  <h2 className="text-sm font-bold uppercase tracking-[0.25em] text-gray-900">Professional Experience</h2>
-                  <span className="text-xs text-gray-500 tracking-widest hidden sm:inline">科研与项目经历</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Link to="/experience" onClick={e => e.stopPropagation()} className="hidden sm:flex items-center gap-1 text-[10px] text-gray-500 hover:text-gray-900 uppercase tracking-widest transition-colors duration-200">
-                  View <ArrowRight size={10} />
-                </Link>
-                <div className={`w-9 h-9 border border-gray-400 flex items-center justify-center text-gray-700 text-xl leading-none font-thin transition-transform duration-400 ${expanded.experience ? 'rotate-45' : ''}`}>+</div>
-              </div>
+            <div className="absolute inset-0 bg-black/65" />
+            <div className="absolute top-5 right-6 z-10 flex items-center gap-3">
+              <Link to="/experience" onClick={e => e.stopPropagation()} className="hidden sm:flex items-center gap-1 text-[10px] text-white/60 hover:text-white uppercase tracking-widest transition-colors duration-200">
+                View <ArrowRight size={10} />
+              </Link>
+              <div className={`w-9 h-9 border border-white/40 flex items-center justify-center text-white text-xl leading-none font-thin transition-transform duration-400 ${expanded.experience ? 'rotate-45' : ''}`}>+</div>
+            </div>
+            <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 pb-8">
+              <p className="text-[10px] text-white/50 tracking-[0.35em] uppercase mb-3">02 — Professional Experience / 科研经历</p>
+              <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.03em] leading-none uppercase">
+                EXPERI<br />ENCE
+              </h2>
             </div>
           </div>
           <div className={`collapsible-wrap ${expanded.experience ? 'open' : ''}`}>
@@ -397,26 +397,24 @@ const App = () => {
         {/* ── Projects ─────────────────────────────────────────── */}
         <section id="projects" className="mb-1 scroll-mt-16" style={{ scrollSnapAlign: 'start' }}>
           <div
-            className="relative -mx-6 h-40 md:h-48 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 cursor-pointer overflow-hidden group"
+            className="relative -mx-6 h-56 md:h-64 cursor-pointer overflow-hidden"
             onClick={() => toggleSection('projects')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
-            style={{ willChange: 'transform' }}
+            style={{ willChange: 'transform', backgroundImage: "url('/images/banner_projects.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
           >
-            <div className="relative z-10 h-full flex items-center justify-between px-6 md:px-12">
-              <div>
-                <span className="section-label" style={{ color: 'rgba(0,0,0,0.07)' }}>PROJECTS</span>
-                <div className="flex items-center gap-3 -mt-2">
-                  <h2 className="text-sm font-bold uppercase tracking-[0.25em] text-gray-900">Featured Projects</h2>
-                  <span className="text-xs text-gray-500 tracking-widest hidden sm:inline">精选项目</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Link to="/projects" onClick={e => e.stopPropagation()} className="hidden sm:flex items-center gap-1 text-[10px] text-gray-500 hover:text-gray-900 uppercase tracking-widest transition-colors duration-200">
-                  View <ArrowRight size={10} />
-                </Link>
-                <div className={`w-9 h-9 border border-gray-400 flex items-center justify-center text-gray-700 text-xl leading-none font-thin transition-transform duration-400 ${expanded.projects ? 'rotate-45' : ''}`}>+</div>
-              </div>
+            <div className="absolute inset-0 bg-black/65" />
+            <div className="absolute top-5 right-6 z-10 flex items-center gap-3">
+              <Link to="/projects" onClick={e => e.stopPropagation()} className="hidden sm:flex items-center gap-1 text-[10px] text-white/60 hover:text-white uppercase tracking-widest transition-colors duration-200">
+                View <ArrowRight size={10} />
+              </Link>
+              <div className={`w-9 h-9 border border-white/40 flex items-center justify-center text-white text-xl leading-none font-thin transition-transform duration-400 ${expanded.projects ? 'rotate-45' : ''}`}>+</div>
+            </div>
+            <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 pb-8">
+              <p className="text-[10px] text-white/50 tracking-[0.35em] uppercase mb-3">03 — Featured Projects / 精选项目</p>
+              <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.03em] leading-none uppercase">
+                PROJ<br />ECTS
+              </h2>
             </div>
           </div>
           <div className={`collapsible-wrap ${expanded.projects ? 'open' : ''}`}>
@@ -452,21 +450,21 @@ const App = () => {
         {/* ── Contact ──────────────────────────────────────────── */}
         <section id="contact" className="mb-20 scroll-mt-16" style={{ scrollSnapAlign: 'start' }}>
           <div
-            className="relative -mx-6 h-40 md:h-48 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 cursor-pointer overflow-hidden group"
+            className="relative -mx-6 h-56 md:h-64 cursor-pointer overflow-hidden"
             onClick={() => toggleSection('contact')}
             onMouseMove={onBannerMove}
             onMouseLeave={onBannerLeave}
-            style={{ willChange: 'transform' }}
+            style={{ willChange: 'transform', backgroundImage: "url('/images/banner_contact.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
           >
-            <div className="relative z-10 h-full flex items-center justify-between px-6 md:px-12">
-              <div>
-                <span className="section-label" style={{ color: 'rgba(0,0,0,0.07)' }}>CONTACT</span>
-                <div className="flex items-center gap-3 -mt-2">
-                  <h2 className="text-sm font-bold uppercase tracking-[0.25em] text-gray-900">Get In Touch</h2>
-                  <span className="text-xs text-gray-500 tracking-widest hidden sm:inline">联系我</span>
-                </div>
-              </div>
-              <div className={`w-9 h-9 border border-gray-400 flex items-center justify-center text-gray-700 text-xl leading-none font-thin transition-transform duration-400 ${expanded.contact ? 'rotate-45' : ''}`}>+</div>
+            <div className="absolute inset-0 bg-black/65" />
+            <div className="absolute top-5 right-6 z-10">
+              <div className={`w-9 h-9 border border-white/40 flex items-center justify-center text-white text-xl leading-none font-thin transition-transform duration-400 ${expanded.contact ? 'rotate-45' : ''}`}>+</div>
+            </div>
+            <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 pb-8">
+              <p className="text-[10px] text-white/50 tracking-[0.35em] uppercase mb-3">04 — Get In Touch / 联系我</p>
+              <h2 className="text-5xl md:text-6xl font-black text-white tracking-[-0.03em] leading-none uppercase">
+                CON<br />TACT
+              </h2>
             </div>
           </div>
           <div className={`collapsible-wrap ${expanded.contact ? 'open' : ''}`}>
@@ -540,7 +538,7 @@ const App = () => {
       </main>
 
       {/* Footer */}
-      <footer ref={footerRef} className="border-t border-gray-100 py-10 px-6">
+      <footer ref={footerRef} className="border-t border-gray-100 py-10 px-6 relative z-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-900">TENG LONGYIN</span>
           <span className="text-xs text-gray-400 uppercase tracking-widest">© 2026 · All Rights Reserved</span>
