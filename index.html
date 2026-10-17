@@ -1,16 +1,112 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teng Longyin — Urban Planner & Spatial Data Developer</title>
+
+    <!-- ── 基础 SEO ───────────────────────────────────────────── -->
+    <title>滕龙吟 Longyin Teng｜历史城市形态 · 文化遗产无损检测</title>
+    <meta name="description" content="滕龙吟（Longyin Teng），北京工业大学建筑与城市规划学院博士。研究历史城市形态与文化遗产无损检测：用探地雷达、三维激光扫描与 GIS，量化清代县城路网（GOI 指数），诊断长城与古建筑内部病害。第一作者论文发表于 ISPRS IJGI，国际发明专利第一发明人。" />
+    <meta name="keywords" content="滕龙吟,Longyin Teng,北京工业大学,历史城市形态,清代县城,道路网络,GOI,探地雷达,三维激光扫描,文化遗产,无损检测,古建筑数字化,GIS" />
+    <meta name="author" content="滕龙吟 Longyin Teng" />
+    <link rel="canonical" href="https://www.dr-teng.com/" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+
+    <!-- ── 分享卡片 ───────────────────────────────────────────── -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="滕龙吟 Longyin Teng" />
+    <meta property="og:title" content="滕龙吟 Longyin Teng｜历史城市形态 · 文化遗产无损检测" />
+    <meta property="og:description" content="用探地雷达、三维激光扫描与 GIS，研究中国传统城市怎么长出来的，以及古建筑还能站多久。" />
+    <meta property="og:url" content="https://www.dr-teng.com/" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- ── 字体：Google Fonts 在国内常被阻断，改为异步加载，不阻塞首屏 ── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&family=Space+Grotesk:wght@400;500&display=swap" />
+    </noscript>
+
+    <!-- ── 结构化数据：让搜索引擎把"滕龙吟"识别为一个人 ────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "https://www.dr-teng.com/#person",
+      "name": "滕龙吟",
+      "alternateName": ["Longyin Teng"],
+      "url": "https://www.dr-teng.com/",
+      "email": "bjut.dr.teng@foxmail.com",
+      "jobTitle": "博士",
+      "description": "北京工业大学建筑与城市规划学院博士，研究历史城市形态与文化遗产无损检测。",
+      "knowsAbout": [
+        "历史城市形态", "清代县城", "道路网络量化", "探地雷达",
+        "三维激光扫描", "文化遗产预防性保护", "地理信息系统", "点云处理"
+      ],
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "北京工业大学" },
+        { "@type": "CollegeOrUniversity", "name": "山东工艺美术学院" }
+      ],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "北京工业大学建筑与城市规划学院"
+      },
+      "sameAs": [
+        "https://baike.baidu.com/item/%E6%BB%95%E9%BE%99%E5%90%9F/68880731",
+        "https://www.mdpi.com/2220-9964/15/7/295",
+        "https://www.researchgate.net/publication/413918555"
+      ],
+      "subjectOf": [
+        {
+          "@type": "NewsArticle",
+          "name": "把实验室搬到山野，青年科研人为长城做“CT”",
+          "url": "https://changcheng.ctnews.com.cn/2026-07/29/content_190115.html",
+          "datePublished": "2026-07-29",
+          "publisher": { "@type": "Organization", "name": "光明网" }
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "name": "Constructing and Validating a Geometric–Organic Index for Road Networks in Qing Dynasty County Cities",
+          "url": "https://www.mdpi.com/2220-9964/15/7/295",
+          "datePublished": "2026-07",
+          "author": { "@id": "https://www.dr-teng.com/#person" }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://www.dr-teng.com/#website",
+      "url": "https://www.dr-teng.com/",
+      "name": "滕龙吟 Longyin Teng",
+      "inLanguage": "zh-CN",
+      "publisher": { "@id": "https://www.dr-teng.com/#person" }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="max-width:720px;margin:60px auto;padding:0 24px;font-family:system-ui,sans-serif;line-height:1.9;color:#111">
+        <h1 style="font-size:32px;margin:0 0 8px">滕龙吟 Longyin Teng</h1>
+        <p style="color:#666;margin:0 0 24px">北京工业大学建筑与城市规划学院 工学博士</p>
+        <p>用探地雷达、三维激光扫描和 GIS，研究中国传统城市怎么长出来的，以及古建筑还能站多久。</p>
+        <p><strong>研究一：</strong>将 256 座清代县城的道路网从历史地图逐条数字化，提出“规整—有机指数”（GOI），量化城市路网的规划性与自发性。</p>
+        <p><strong>研究二：</strong>探地雷达与三维激光扫描融合的长城／砖石遗产无损检测，在密云 1:1 仿真长城试验平台完成模型搭建、设备联调、数据标注与算法优化。</p>
+        <p><strong>成果：</strong>ISPRS Int. J. Geo-Inf. 2026, 15(7), 295（第一作者）；Sustainability 2025, 17(13), 6065（共同第一作者）；国际发明专利 1 项（第一发明人）；软件著作权 10 项。</p>
+        <p>完整中文简历（纯静态版）：<a href="/zh/">dr-teng.com/zh/</a></p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
