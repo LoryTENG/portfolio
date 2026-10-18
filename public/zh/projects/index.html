@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>项目｜滕龙吟 Longyin Teng · 长城无损检测 · 故宫雨花阁点云 · 文物抢险</title>
+<meta name="description" content="滕龙吟参与的项目：北京密云 1:1 仿真长城无损检测试验平台、故宫雨花阁三维激光扫描与点云算法、北京市暴雨受灾历史建筑抢险修复（75 处）、房山区柳林水村保护规划。">
+<meta name="keywords" content="滕龙吟,长城无损检测,探地雷达,密云仿真长城,故宫雨花阁,三维激光扫描,点云,文物抢险,传统村落,GIS">
+<link rel="canonical" href="https://www.dr-teng.com/zh/projects/">
+<meta name="baidu-site-verification" content="codeva-hgAlaVSlWv" />
+<meta property="og:title" content="项目｜滕龙吟 Longyin Teng">
+<meta property="og:description" content="长城无损检测、故宫雨花阁点云、北京市文物抢险、传统村落保护。">
+<meta property="og:type" content="article">
+<style>
+  :root{--ink:#111;--ink2:#555;--ink3:#9a9a9a;--rule:#e5e5e5}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"Space Grotesk","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:780px;margin:0 auto;padding:56px 26px 100px}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--ink);margin-bottom:48px;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
+  .topbar a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+  .topbar a:hover{border-bottom-color:var(--ink)}
+  h1{font-family:"Archivo","PingFang SC",system-ui,sans-serif;font-size:clamp(32px,6vw,48px);line-height:1.05;letter-spacing:-.03em;font-weight:900;margin:0 0 10px}
+  .sub{color:var(--ink3);font-size:14px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:44px}
+  article{border-top:1px solid var(--ink);padding:26px 0 30px}
+  article + article{border-top:1px solid var(--rule)}
+  .tag{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+  h2{font-size:21px;font-weight:600;line-height:1.45;margin:0 0 6px;letter-spacing:-.01em}
+  .meta{font-size:13px;color:var(--ink3);margin-bottom:14px}
+  p{margin:0 0 12px;color:var(--ink2);font-size:15px}
+  .role{font-size:13px;color:var(--ink3);border-left:2px solid var(--rule);padding-left:12px;margin-top:14px}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule)}
+  @media(max-width:640px){.wrap{padding:36px 20px 72px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <span>项目 · Projects</span>
+    <a href="/zh/">← 返回简历</a>
+  </div>
+
+  <h1>项目</h1>
+  <p class="sub">Projects · 滕龙吟 Longyin Teng</p>
+
+  <article>
+    <div class="tag">文化遗产无损检测 · 2023—2026</div>
+    <h2>北京密云 1:1 仿真长城试验平台 · 无损检测技术研发</h2>
+    <p class="meta">北京工业大学建筑与城市规划学院　钱威副教授团队　·　项目主要参与人</p>
+    <p>长城是全球体量最大的线性世界文化遗产。传统人工勘察"看不进去"，而开挖检测又违背"最小干预"原则。团队在北京密云西田各庄镇建了一座 1:1 的仿真长城墙体平台，上面人为设置空洞、沉降裂隙、砖体损伤、冻融剥落等典型病害，用来反复试验"不开挖也能看清墙体内部"的方法。</p>
+    <p>我承担了模型搭建、设备联调、数据标注与算法优化的全流程工作。针对传统探地雷达成像模糊、病害无法量化定位的问题，通过信号增强、图像处理与三维建模提高内部病害识别能力，实现墙体内部结构状态的可视化表达。</p>
+    <p class="role">成果：以第一发明人获国际发明专利 1 项、中国发明专利 2 项受理；相关技术服务于北京明长城等遗产保护场景。光明网、中国青年报、央视频、北京日报曾报道。</p>
+  </article>
+
+  <article>
+    <div class="tag">三维点云 · 算法研发</div>
+    <h2>故宫雨花阁三维激光扫描与点云算法研究</h2>
+    <p class="meta">核心研发</p>
+    <p>雨花阁是故宫内典型的密宗建筑，层叠的屋面、斗拱与内部空间关系复杂，传统测绘很难同时保证精度与效率。项目用三维激光扫描获取高密度点云，再从中自动提取建筑构件。</p>
+    <p>我自主设计并验证了 4 种核心算法：基于 PointNet 的特征提取、PINN 约束的几何重建、DBSCAN 驱动的构件分割、PCA 方向分析。并研发了三维点云自动转二维图纸的软件，将 50 万点的处理时间压到秒级。</p>
+    <p class="role">成果：软件著作权（第一完成人）；相关方法延伸为国际发明专利"三维点云转二维图纸"（卢森堡，2025 年授权）。</p>
+  </article>
+
+  <article>
+    <div class="tag">应急抢险 · 2023</div>
+    <h2>北京市暴雨受灾历史建筑抢险修复</h2>
+    <p class="meta">统筹 · 75 处国家级及市级文物保护单位</p>
+    <p>极端降雨之后，一批历史建筑出现屋面渗漏、墙体开裂、地基掏空等险情。抢险的难点不在技术，而在"时间紧、点位散、审批链条长"——要在最短时间内把每一处的位置、损毁程度、处置方案摸清并形成可审批的材料。</p>
+    <p>我统筹了全市 75 处国家级及市级文物保护单位的图纸组织、现场测绘与审批汇报工作，建立了统一的台账与图档结构，让"一处一策"的处置方案能够被快速核验与批复。</p>
+  </article>
+
+  <article>
+    <div class="tag">传统村落 · 规划实践</div>
+    <h2>房山区柳林水村保护规划与文物保护单位范围划定</h2>
+    <p class="meta">城乡规划 · GIS 精确定界</p>
+    <p>柳林水村是京郊典型的山地传统村落，院落依地形层层跌落，风貌要素混杂。项目要在保护与发展之间划出一条可执行的线：哪些院落必须原样保留，哪些可以整治，哪些需要新建。</p>
+    <p>我负责图表绘制、旅游规划与基于 GIS 的精确定界，把"风貌整治"从经验判断变成可对照的导则与图则，并形成保护规划中的管控要求。</p>
+    <p class="role">成果：论文《传统村落保护发展规划中建筑院落风貌整治研究——以北京市柳林水村为例》（城市建筑空间, 2023）。</p>
+  </article>
+
+  <footer>
+    <span>© 2026 滕龙吟</span>
+    <span><a href="/zh/">简历</a>　·　<a href="/zh/papers/">论文</a>　·　<a href="/">主站</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
