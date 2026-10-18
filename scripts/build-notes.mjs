@@ -152,15 +152,49 @@ for (const p of posts) {
   const dir = path.join(OUT, p.slug);
   fs.mkdirSync(dir, { recursive: true });
 
-  // 复制同名图片文件夹
+  // 1) 图片：支持 Obsidian 的 ![[xx.png]] 与标准 ![](xx.png)
+  //    源文件按顺序在 <slug>/ 、content/notes/ 、content/notes/attachments/ 、库根目录 里找
+  const refs = new Set();
+  for (const m of p.content.matchAll(/!\[\[([^\]|]+?)(?:\|[^\]]*)?\]\]/g)) refs.add(m[1].trim());
+  for (const m of p.content.matchAll(/!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g)) refs.add(m[1].trim());
+
+  const searchDirs = [
+    path.join(SRC, p.slug),
+    SRC,
+    path.join(SRC, 'attachments'),
+    ROOT,
+  ];
+
+  for (const ref of refs) {
+    if (/^(https?:|data:)/.test(ref)) continue;
+    const clean = ref.replace(/^\.\//, '');
+    const base = path.basename(clean);
+    const found = searchDirs.map((d) => path.join(d, clean)).find((c) => fs.existsSync(c) && fs.statSync(c).isFile())
+      || searchDirs.map((d) => path.join(d, base)).find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
+    if (!found) {
+      console.warn(`  ⚠ 找不到图片：${ref}（已跳过，页面会显示裂图）`);
+      continue;
+    }
+    const dest = path.join(dir, clean);
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.copyFileSync(found, dest);
+  }
+
+  // 兼容旧的"同名文件夹整目录复制"
   const assetDir = path.join(SRC, p.slug);
   if (fs.existsSync(assetDir) && fs.statSync(assetDir).isDirectory()) {
     for (const img of fs.readdirSync(assetDir)) {
-      fs.copyFileSync(path.join(assetDir, img), path.join(dir, img));
+      const src2 = path.join(assetDir, img);
+      if (!fs.statSync(src2).isFile()) continue;
+      const dst2 = path.join(dir, img);
+      if (!fs.existsSync(dst2)) fs.copyFileSync(src2, dst2);
     }
   }
 
-  const html = marked.parse(p.content);
+  // Obsidian 嵌入语法转标准 Markdown
+  const normalized = p.content.replace(/!\[\[([^\]|]+?)(?:\|([^\]]*))?\]\]/g, (_, f, alt) => `![${alt || ''}](${f.trim()})`);
+
+  const html = marked.parse(normalized);
   const canonical = `${SITE}/zh/notes/${p.slug}/`;
   const cover = p.cover ? `${canonical}${p.cover}` : '';
 
