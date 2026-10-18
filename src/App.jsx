@@ -191,6 +191,14 @@ const App = () => {
                 ? <a key={id} href={to} className={cls}>{label}</a>
                 : <Link key={id} to={to} className={cls}>{label}</Link>;
             })}
+            <a
+              href="/zh/"
+              className="px-4 py-2 whitespace-nowrap transition-all duration-200 flex items-center justify-center gap-1.5 font-bold text-gray-400 hover:text-gray-900"
+            >
+              <span className="text-[13px]">CV</span>
+              <span className="text-[11px] opacity-30 font-normal">·</span>
+              <span className="text-[11px] opacity-60 normal-case font-normal tracking-[0.08em]">中文简历</span>
+            </a>
           </div>
           <span className="text-xs text-gray-300 font-mono tracking-widest hidden sm:inline">{time}</span>
         </div>
