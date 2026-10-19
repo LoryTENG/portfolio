@@ -36,3 +36,7 @@ public/*.mp4
 # Scratch files
 2.jsx
 .vercel
+
+# 百度推送凭据与状态（不得进公开仓库）
+.baidu-token
+.baidu-state.json

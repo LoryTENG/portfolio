@@ -13,7 +13,16 @@ import path from 'node:path';
 
 const ROOT = process.cwd();
 const SITE = 'https://www.dr-teng.com';
-const TOKEN = process.env.BAIDU_TOKEN || 'ViGo9IkYiqkKySVx';
+
+// token 不进仓库（本仓库是公开的）：优先环境变量，其次项目根的 .baidu-token（已 gitignore）
+const TOKEN_FILE = path.join(ROOT, '.baidu-token');
+const TOKEN = (process.env.BAIDU_TOKEN
+  || (fs.existsSync(TOKEN_FILE) ? fs.readFileSync(TOKEN_FILE, 'utf8') : '')).trim();
+if (!TOKEN) {
+  console.error('✗ 缺少百度推送 token：把 token 写进项目根 .baidu-token（已 gitignore），或设置 BAIDU_TOKEN。');
+  process.exit(1);
+}
+
 const API = `http://data.zz.baidu.com/urls?site=${SITE}&token=${TOKEN}`;
 const STATE = path.join(ROOT, '.baidu-state.json');
 
